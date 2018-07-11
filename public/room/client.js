@@ -11,6 +11,7 @@
   let setupinterval;
   let is_first_play = true;
   let seek_on_play = null;
+  let uid = '';
 
   const init = function(){
     socket = io();
@@ -19,6 +20,8 @@
     videoid = $('#video_id');
     bindUserInterface();
     setupEventHandlers();
+
+    window.socketz = socket;
   };
 
   const bindUserInterface = function(){
@@ -55,6 +58,11 @@
     socket.on( 'video_update', handle_video_update );
     socket.on( 'set_playback_state', handle_set_playback_state );
     socket.on( 'set_video_progress', handle_set_progress );
+    socket.on( 'sv_send_uid', handle_receive_uid );
+  };
+
+  const handle_receive_uid = function(uid){
+    $('#uid').text(uid);
   };
 
   const handle_video_update = function(id){

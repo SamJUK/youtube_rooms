@@ -3,6 +3,10 @@
 body{
   margin-top: 25px;
 }
+body.homepage #uid_string {
+  margin-right: 15px;
+  align-self: center;
+}
 
 input{ flex: 1 0 auto; margin-right: 10px; padding: 0 0 0 10px;}
 button { padding: 5px 10px; min-width: 60px; }

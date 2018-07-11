@@ -1,25 +1,33 @@
 module.exports = socket => {
-  console.log('New Connection');
+  // Setup our new user
+  let uid = socket.handshake.session.uid;
+  users[uid].socket = socket;
 
-  console.log(JSON.stringify(room));
+
+  // Create UID if session has none :O
+  // console.log('New Connection, UID: ' + uid);
+  // console.log('Socket Connection: ' + socket.handshake.session.uid);
+  socket.emit('sv_send_uid', uid);
+
+
 
   // Handle JIP Stuffings Turkey
-  if(room && room.video) {
-    socket.emit('video_update', room.video);
+  if(room){
+    if(room.video) {
+      socket.emit('video_update', room.video);
+    }
+    if(room.playbackstate) {
+      socket.emit('set_playback_state', room.playbackstate);
+    }
+    if(room.videoprogress && room.videoprogress.vtime && room.videoprogress.time ) {
+
+      let time = room.playbackstate === '0'
+        ? room.videoprogress.vtime
+        : (((new Date).getTime() - room.videoprogress.time) / 1000) + room.videoprogress.vtime;
+
+      socket.emit('set_video_progress', time);
+    }
   }
-  if(room && room.playbackstate) {
-    socket.emit('set_playback_state', room.playbackstate);
-  }
-  if(room && room.videoprogress && room.videoprogress.vtime && room.videoprogress.time ) {
-
-    let time = room.playbackstate === '0'
-      ? room.videoprogress.vtime
-      : (((new Date).getTime() - room.videoprogress.time) / 1000) + room.videoprogress.vtime;
-
-    socket.emit('set_video_progress', time);
-  }
-
-
 
 
   // Setup User Specific Event Handlers
@@ -27,4 +35,6 @@ module.exports = socket => {
   socket.on('set_playback_state', require('./changePlaybackState'));
   socket.on('set_video_progress', require('./setVideoProgress'));
   socket.on('disconnect', require('./disconnect'));
+
+  socket.on('debug', require('./debug'));
 };
