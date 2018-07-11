@@ -1,7 +1,17 @@
 module.exports = socket => {
   // Setup our new user
   let uid = socket.handshake.session.uid;
-  users[uid].socket = socket;
+  if(users[uid]){
+    users[uid].socket = socket;
+  }else{
+    users[uid] = {
+      socket: socket,
+      created_at: (new Date()).getTime(),
+      updated_at: (new Date()).getTime(),
+      alias: null,
+      room: null
+    };
+  }
 
 
   // Create UID if session has none :O

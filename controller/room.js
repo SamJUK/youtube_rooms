@@ -1,4 +1,4 @@
 module.exports = (req, res) => {
   // Server Rooms
-  res.sendFile(BASE_PATH + '/public/room/index.html');
+  res.render(BASE_PATH + '/public/views/room');
 };

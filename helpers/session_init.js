@@ -1,9 +1,6 @@
 const userHelper = require('../helpers/user');
 module.exports = (req, res, next) => {
 
-
-  console.log(req.session.uid);
-
   if(!req.session.uid || !users[req.session.uid]){
     req.session.uid = userHelper.generateUID();
     users[req.session.uid] = {

@@ -30,6 +30,7 @@ const session = Session({
 
 // Setup Server
 app.use(session);
+app.set('view engine', 'ejs');
 app.use(express.static(BASE_PATH + '/public'));
 app.use(require('./helpers/session_init'));
 app.use(require('./helpers/logger'));
