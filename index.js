@@ -8,12 +8,13 @@ const path = require('path');
 const Session = require('express-session');
 const SessionStore = require('session-file-store')(Session);
 const ios = require('socket.io-express-session');
+const bodyParser = require('body-parser');
 
 
 // Declare Globally
 global.BASE_PATH = path.dirname(require.main.filename);
 global.io = io;
-global.room = { video: '', playbackstate: '0' , videoprogress: { vtime: 0, time: 0 } };
+global.rooms = {};
 global.users = {};
 
 
@@ -31,6 +32,8 @@ const session = Session({
 // Setup Server
 app.use(session);
 app.set('view engine', 'ejs');
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static(BASE_PATH + '/public'));
 app.use(require('./helpers/session_init'));
 app.use(require('./helpers/logger'));
@@ -44,6 +47,7 @@ http.listen(port, function(){
 // ROUTES
 app.get('/', require('./controller/index'));
 app.get('/room/:room', require('./controller/room'));
+app.post('/createRoom', require('./controller/createRoom'));
 
 
 // Event Handlers

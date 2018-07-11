@@ -10,11 +10,11 @@
     <div class="controls">
       <div class="row">
         <p id="uid_string"><strong>Your UID: </strong><span id="uid"><%= uid %></span></p>
-        <p id="alias_string"><strong>Your Alias: </strong><span id="alias"></span></p>
+        <p id="alias_string"><strong>Your Alias: </strong><span id="alias"><%= alias %></span></p>
       </div>
       <div class="row">
-        <input type="text" placeholder="Alias">
-        <button>Set Alias</button>
+        <input id="alias_input" type="text" placeholder="Alias">
+        <button id="alias_button">Set Alias</button>
       </div>
     </div>
   </div>
@@ -23,8 +23,10 @@
     <h3>Create Room</h3><br>
     <div class="controls">
       <div class="row">
-        <input type="text" placeholder="room_id">
-        <button>Create Room</button>
+        <form action="/createRoom" method="POST">
+          <input id="create_input" name="create_input" type="text" placeholder="room_id">
+          <button id="create_button" type="submit" >Create Room</button>
+        </form>
       </div>
     </div>
   </div>
