@@ -11,6 +11,7 @@ module.exports = (req, res) => {
 
   users[req.session.uid].room = req.params.room;
   rooms[req.params.room].users.push(req.session.uid);
+  rooms[req.params.room].lastInteraction = (new Date()).getTime();
   io.emit( 'cl_update_room_users', rooms[req.params.room].users );
 
 

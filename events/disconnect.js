@@ -6,6 +6,7 @@ module.exports = uid => {
     if(room.users.includes(uid)){
       room.users.splice(room.users.indexOf(uid), 1);
     }
+    room.lastInteraction = (new Date()).getTime();
     users[uid].room = null;
     io.emit( 'cl_update_room_users', room.users );
   }

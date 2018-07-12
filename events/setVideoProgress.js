@@ -4,5 +4,6 @@ module.exports = (uid, data) => {
 
   rooms[users[uid].room].room.videoprogress.vtime = data.timestamp;
   rooms[users[uid].room].room.videoprogress.time = (new Date).getTime();
+  rooms[users[uid].room].lastInteraction = (new Date()).getTime();
   io.emit( 'set_video_progress', data.timestamp );
 };

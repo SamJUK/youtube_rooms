@@ -40,14 +40,17 @@
       </div>
     </div>
   </div
-  <% if (Object.keys(rooms).length) { %>
   <div class="section">
     <br><h3>Rooms</h3><br>
     <ul id="rooms_list">
-      <% include partials/rooms/list %>
+      <% if (Object.keys(rooms).length) { %>
+        <% include partials/rooms/list %>
+        <% }else{ %>
+          <li>No Rooms Available</li>
+        <% } %>
+
     </ul>
   </div>
-  <% } %>
 </div>
 
 <% include partials/footer %>

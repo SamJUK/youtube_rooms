@@ -53,3 +53,7 @@ app.post('/createRoom', require('./controller/createRoom'));
 // Event Handlers
 io.use(ios(session));
 io.on('connection', require('./events/connection'));
+
+
+// Cron Style Thing
+require('./helpers/crony')();

@@ -20,27 +20,6 @@ module.exports = socket => {
   // console.log('Socket Connection: ' + socket.handshake.session.uid);
   socket.emit('sv_send_uid', uid);
 
-
-
-  // Handle JIP Stuffings Turkey
-  // if(room){
-  //   if(room.video) {
-  //     socket.emit('video_update', room.video);
-  //   }
-  //   if(room.playbackstate) {
-  //     socket.emit('set_playback_state', room.playbackstate);
-  //   }
-  //   if(room.videoprogress && room.videoprogress.vtime && room.videoprogress.time ) {
-  //
-  //     let time = room.playbackstate === '0'
-  //       ? room.videoprogress.vtime
-  //       : (((new Date).getTime() - room.videoprogress.time) / 1000) + room.videoprogress.vtime;
-  //
-  //     socket.emit('set_video_progress', time);
-  //   }
-  // }
-
-
   // Setup User Specific Event Handlers
   // Video Page
   socket.on('set_video', require('./setVideo').bind(this, socket.uid));

@@ -10,6 +10,7 @@ module.exports = (req, res) => {
     owner: uid,
     public: false,
     users: [],
+    lastInteraction: (new Date()).getTime(),
     room: {
       video: '',
       playbackstate: '0',

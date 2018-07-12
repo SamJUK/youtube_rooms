@@ -6,5 +6,6 @@ module.exports = (uid, data) => {
   rooms[users[uid].room].room.playbackstate = '1';
   rooms[users[uid].room].room.videoprogress.vtime = 0;
   rooms[users[uid].room].room.videoprogress.time = (new Date).getTime();
+  rooms[users[uid].room].lastInteraction = (new Date()).getTime();
   io.emit( 'video_update', data.video );
 };
