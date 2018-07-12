@@ -9,10 +9,16 @@ module.exports = (req, res) => {
   rooms[roomName] = {
     owner: uid,
     public: false,
+    users: [],
     room: {
       video: '',
       playbackstate: '0',
       videoprogress: { vtime: 0, time: 0 }
     }
   };
+
+  let rooms_helper = require('../helpers/rooms.js');
+  io.emit( 'cl_update_rooms', rooms_helper.getRoomsListHTML());
+  res.redirect(`/room/${roomName}`);
+
 };

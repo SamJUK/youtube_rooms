@@ -1,11 +1,13 @@
 <% var page = 'room'; %>
 <% include partials/head %>
+<% include partials/header %>
 
-<!-- Player -->
 <div class="container">
   <div class="toptext">
-    <p id="uid"></p>
-    <p id="room_id"></p>
+    <p>Your UID: <%= uid %></p>
+    <p>Your Alias: <%= alias %></p>
+    <p>Room Name: <%= roomname %></p>
+    <p>Room Users: <span id="room_users"><%= roomusers %></span></p>
   </div>
   <div id="playerWrapper">
     <div id="player"></div>
@@ -25,5 +27,17 @@
     </div>
   </div>
 </div>
+
+<script defer>
+  // Wait for client JS to load before running
+  let waitForJS = setInterval( () => {
+    if(typeof handle_video_update !== 'function') return;
+
+    handle_video_update('<%= videouid %>');
+    handle_set_playback_state(<%= videoplaybackstate %>);
+    handle_set_progress(<%= videoprogress %>);
+    clearInterval(waitForJS);
+  }, 1000);
+</script>
 
 <% include partials/footer %>

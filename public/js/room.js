@@ -12,12 +12,14 @@
   let is_first_play = true;
   let seek_on_play = null;
   let uid = '';
+  let room_users;
 
   const init = function(){
     socket = io();
     timeline = $('#controls_timeline');
     timelinepin = timeline.find('.pin');
     videoid = $('#video_id');
+    room_users = $('#room_users');
     bindUserInterface();
     setupEventHandlers();
 
@@ -59,6 +61,7 @@
     socket.on( 'set_playback_state', handle_set_playback_state );
     socket.on( 'set_video_progress', handle_set_progress );
     socket.on( 'sv_send_uid', handle_receive_uid );
+    socket.on( 'cl_update_room_users', handle_update_room_users );
   };
 
   const handle_receive_uid = function(uid){
@@ -107,6 +110,11 @@
     }else{
       seek_on_play = timestamp;
     }
+  };
+
+
+  const handle_update_room_users = function(users){
+    room_users.text(users.join(', '));
   };
 
   const onYouTubeIframeAPIReady = function(){
@@ -162,6 +170,9 @@
 
   // Export variables to global scope if needed
   window.onYouTubeIframeAPIReady = onYouTubeIframeAPIReady;
+  window.handle_set_progress = handle_set_progress;
+  window.handle_video_update = handle_video_update;
+  window.handle_set_playback_state = handle_set_playback_state;
 
   // Run Initalization stuff
   init();

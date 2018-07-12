@@ -1,7 +1,7 @@
 <% var page = 'homepage'; %>
 <% include partials/head %>
+<% include partials/header %>
 
-<!-- Player -->
 <div class="container">
   <h1>Youtube Rooms</h1>
   <hr><br>
@@ -35,17 +35,19 @@
     <h3>Join Room</h3><br>
     <div class="controls">
       <div class="row">
-        <input type="text" placeholder="room_id">
-        <button>Join Room</button>
+        <input id="join_input" type="text" placeholder="room_id">
+        <button id="join_button">Join Room</button>
       </div>
     </div>
-  </div>
+  </div
+  <% if (Object.keys(rooms).length) { %>
   <div class="section">
     <br><h3>Rooms</h3><br>
-    <ul>
-      <!-- @TODO: Populate Already Generated Servers -->
+    <ul id="rooms_list">
+      <% include partials/rooms/list %>
     </ul>
   </div>
+  <% } %>
 </div>
 
 <% include partials/footer %>

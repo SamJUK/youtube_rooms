@@ -43,10 +43,10 @@ module.exports = socket => {
 
   // Setup User Specific Event Handlers
   // Video Page
-  socket.on('set_video', require('./setVideo'));
-  socket.on('set_playback_state', require('./changePlaybackState'));
-  socket.on('set_video_progress', require('./setVideoProgress'));
-  socket.on('disconnect', require('./disconnect'));
+  socket.on('set_video', require('./setVideo').bind(this, socket.uid));
+  socket.on('set_playback_state', require('./changePlaybackState').bind(this, socket.uid));
+  socket.on('set_video_progress', require('./setVideoProgress').bind(this, socket.uid));
+  socket.on('disconnect', require('./disconnect').bind(this, socket.uid));
 
   // Homepage
   socket.on('sv_set_alias', require('./setAlias').bind(this, socket.uid));
