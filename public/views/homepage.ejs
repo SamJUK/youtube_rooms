@@ -2,55 +2,19 @@
 <% include partials/head %>
 <% include partials/header %>
 
-<div class="container">
-  <h1>Youtube Rooms</h1>
-  <hr><br>
-  <div class="section">
-    <h3>Your Identity</h3><br><br>
-    <div class="controls">
-      <div class="row">
-        <p id="uid_string"><strong>Your UID: </strong><span id="uid"><%= uid %></span></p>
-        <p id="alias_string"><strong>Your Alias: </strong><span id="alias"><%= alias %></span></p>
-      </div>
-      <div class="row">
-        <input id="alias_input" type="text" placeholder="Alias">
-        <button id="alias_button">Set Alias</button>
-      </div>
-    </div>
-  </div>
-  <br><hr><br>
-  <div class="section">
-    <h3>Create Room</h3><br>
-    <div class="controls">
-      <div class="row">
-        <form action="/createRoom" method="POST">
-          <input id="create_input" name="create_input" type="text" placeholder="room_id">
-          <button id="create_button" type="submit" >Create Room</button>
-        </form>
-      </div>
-    </div>
-  </div>
-  <br><hr><br>
-  <div class="section">
-    <h3>Join Room</h3><br>
-    <div class="controls">
-      <div class="row">
-        <input id="join_input" type="text" placeholder="room_id">
-        <button id="join_button">Join Room</button>
-      </div>
-    </div>
-  </div
-  <div class="section">
-    <br><h3>Rooms</h3><br>
-    <ul id="rooms_list">
-      <% if (Object.keys(rooms).length) { %>
-        <% include partials/rooms/list %>
-        <% }else{ %>
-          <li>No Rooms Available</li>
-        <% } %>
-
-    </ul>
-  </div>
-</div>
+<main>
+    <section id="alias" class="column-center">
+        <h3 class="font_weight-light font_size-large font_align-center">Hey, looks like your new around here; <span class="font_weight-regular">Care to set a name?</span></h3>
+        <div class="input_wrapper">
+            <input type="text" id="alias" name="alias" />
+            <label for="alias" class="font_size-medium">SET ></label>
+        </div>
+        <div class="secondary_text font_align-center">
+            <a href="#">
+                <span class="font_size-medium">Nah i'm good</span>
+            </a>
+        </div>
+    </section>
+</main>
 
 <% include partials/footer %>
