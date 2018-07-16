@@ -1,0 +1,22 @@
+<% var page = 'rooms'; %>
+<% include partials/head %>
+<% include partials/header %>
+
+<main>
+    <section id="rooms" class="column-center">
+        <h3 class="font_weight-light font_size-large font_align-center">What's the desired room name, <br><span class="font_weight-regular">to create or join ?</span></h3>
+        <form action="rooms" method="POST">
+            <div class="input_wrapper">
+                <input type="text" id="room" name="room" />
+                <label for="room" class="font_size-medium">SET ></label>
+            </div>
+        </form>
+        <div class="secondary_text font_align-center">
+            <a href="/rooms">
+                <span class="font_size-medium">Nah i'm good</span>
+            </a>
+        </div>
+    </section>
+</main>
+
+<% include partials/footer %>

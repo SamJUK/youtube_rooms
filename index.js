@@ -46,8 +46,11 @@ http.listen(port, function(){
 
 // ROUTES
 app.get('/', require('./controller/index'));
+app.get('/rooms', require('./controller/rooms'));
 app.get('/room/:room', require('./controller/room'));
-app.post('/createRoom', require('./controller/createRoom'));
+
+app.post('/rooms', require('./controller/roomsPost'));
+app.post('/alias', require('./controller/setAlias'));
 
 
 // Event Handlers

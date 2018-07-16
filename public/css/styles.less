@@ -66,13 +66,20 @@ body{ background: #f0f0f0; }
     justify-content: space-between;
     padding: 10px 15px;
 }
+.header_branding .link{
+    color: inherit;
+    text-decoration: none;
+    font-size: inherit;
+}
 .header_identifiers-uid{
     display: block;
     opacity: .5;
+    text-align: right;
 }
 .header_identifiers-alias{
     display: block;
     opacity: .75;
+    text-align: right;
 }
 
 
@@ -98,5 +105,16 @@ main{
     span{
         opacity: .45;
         color: inherit;
+    }
+}
+
+
+
+// Rooms Selector Styling
+#rooms {
+    br {
+        @media screen and (max-width: 575px){
+            display: none;
+        }
     }
 }

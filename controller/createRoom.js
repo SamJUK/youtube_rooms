@@ -2,8 +2,7 @@ module.exports = (req, res) => {
   var uid = req.session.uid;
 
   // @TODO: VALIDATE VALIDATE VALIDATE
-  var roomName = req.body.create_input;
-
+  var roomName = req.body.room;
   console.log(`Create Room: ${roomName} | UID: ${uid}`);
 
   rooms[roomName] = {
@@ -18,8 +17,5 @@ module.exports = (req, res) => {
     }
   };
 
-  let rooms_helper = require('../helpers/rooms.js');
-  io.emit( 'cl_update_rooms', rooms_helper.getRoomsListHTML());
   res.redirect(`/room/${roomName}`);
-
 };

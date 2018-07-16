@@ -5,12 +5,14 @@
 <main>
     <section id="alias" class="column-center">
         <h3 class="font_weight-light font_size-large font_align-center">Hey, looks like your new around here; <span class="font_weight-regular">Care to set a name?</span></h3>
-        <div class="input_wrapper">
-            <input type="text" id="alias" name="alias" />
-            <label for="alias" class="font_size-medium">SET ></label>
-        </div>
+        <form action="alias" method="POST">
+            <div class="input_wrapper">
+                <input type="text" id="alias" name="alias" />
+                <label for="alias" class="font_size-medium">SET ></label>
+            </div>
+        </form>
         <div class="secondary_text font_align-center">
-            <a href="#">
+            <a href="/rooms">
                 <span class="font_size-medium">Nah i'm good</span>
             </a>
         </div>
